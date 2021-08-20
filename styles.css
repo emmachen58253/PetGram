@@ -1,0 +1,39 @@
+h1 {
+  text-align: center;
+  text-decoration: solid;
+  border-style: solid;
+  border-width: 5px;
+}
+
+.post {
+  margin: auto;
+  height: 50%;
+  width: 40%;
+  text-decoration: solid;
+  border-style: solid;
+  border-width: 5px;
+}
+
+.profile {
+  display: flex;
+}
+
+.profile > img {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.main-pic {
+  height: 60%;
+  width: 100%;
+}
+
+.metadata {
+  display: flex;
+}
+
+.metadata > img {
+  height: 30px;
+  width: 30px;
+}
