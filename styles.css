@@ -7,6 +7,7 @@ h1 {
 
 .post {
   margin: auto;
+  margin-top: 40px;
   height: 50%;
   width: 40%;
   text-decoration: solid;
@@ -36,4 +37,51 @@ h1 {
 .metadata > img {
   height: 30px;
   width: 30px;
+}
+
+.profile > img {
+  margin: 10px;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.metadata > img {
+  margin: 10px;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.footer > p {
+  margin: 10px;
+}
+
+footer {
+  display: flex;
+  font-size: 12pt;
+  border-style: solid;
+  border-width: 5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer > button {
+  width: 33.33%;
+  height: 60px;
+  font-size: 20pt;
+  padding: 0;
+  border-style: none;
+  margin: 0;
+  background-color: white;
+}
+
+#home-btn {
+  border-right: solid;
+  border-width: 5px;
+}
+
+#new-btn {
+  border-right: solid;
+  border-width: 5px;
 }
