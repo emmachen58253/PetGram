@@ -1,15 +1,23 @@
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: rgb(245, 236, 220);
+}
+
 h1 {
   text-align: center;
   text-decoration: solid;
   border-style: solid;
   border-width: 5px;
+  background-color: white;
 }
 
 .post {
+  background-color: white;
   margin: auto;
   margin-top: 40px;
-  height: 50%;
-  width: 40%;
+  margin-bottom: 100px;
+  height: 60%;
+  width: 35%;
   text-decoration: solid;
   border-style: solid;
   border-width: 5px;
@@ -21,12 +29,22 @@ h1 {
 
 .profile > img {
   border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+  border-style: none;
+  margin: 20px;
+}
+
+.profile > p {
+  font-size: 24pt;
+  margin: auto;
+  margin-left: 40px;
 }
 
 .main-pic {
-  height: 60%;
+  object-fit: scale-down;
+  height: 550px;
   width: 100%;
 }
 
@@ -36,19 +54,17 @@ h1 {
 
 .metadata > img {
   height: 30px;
+  object-fit: cover;
   width: 30px;
+  margin: 10px;
 }
 
-.profile > img {
-  margin: 10px;
-  border-style: solid;
-  border-width: 2px;
+.metadata > img:hover {
+  transform: scale(1.1);
 }
 
-.metadata > img {
-  margin: 10px;
-  border-style: solid;
-  border-width: 2px;
+.footer {
+  margin: 20px;
 }
 
 .footer > p {
@@ -67,12 +83,12 @@ footer {
 }
 
 footer > button {
+  padding: 0%;
+  margin: 0%;
   width: 33.33%;
   height: 60px;
   font-size: 20pt;
-  padding: 0;
   border-style: none;
-  margin: 0;
   background-color: white;
 }
 
