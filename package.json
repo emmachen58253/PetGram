@@ -1,0 +1,25 @@
+{
+  "name": "petgram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmachen58253/PetGram.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emmachen58253/PetGram/issues"
+  },
+  "homepage": "https://github.com/emmachen58253/PetGram#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "multer": "^1.4.3",
+    "sqlite": "^4.0.23",
+    "sqlite3": "^5.0.2"
+  }
+}
