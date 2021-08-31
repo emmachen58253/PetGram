@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
  * fragment
  */
  app.get('/petgram/posts', async function(req, res) {
-  try {
+   try {
     let search = req.query.search;
     let query = '';
     if (search !== null && search !== undefined) {
@@ -25,13 +25,13 @@ app.use(express.urlencoded({extended: true}));
       query = 'SELECT * FROM posts ORDER BY DATETIME(date) DESC';
     }
     let db = await getDBConnection();
-    let result = await db.all(query);
-    let trueResult = {
-      'yips': result
+    let posts = await db.all(query);
+    let result = {
+      'posts': posts
     };
     await db.close();
     res.type('json');
-    res.json(trueResult);
+    res.json(result);
   } catch (err) {
     res.status(SERVER_ERROR).type('text');
     res.send('An error occurred on the server. Try again later.');
