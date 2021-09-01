@@ -99,7 +99,7 @@
     let heartIcon = document.createElement('img');
     heartIcon.src = 'misc-pictures/heart.jpg';
     heartIcon.alt = 'heart icon';
-    // ADD EVENT LISTENER FOR HEART
+    heartIcon.addEventListener('click', likePost);
     metaData.appendChild(heartIcon);
     let numLikes = document.createElement('p');
     numLikes.textContent = currentPostData.likes;
@@ -107,6 +107,34 @@
     footer.appendChild(metaData);
     post.appendChild(footer);
     return post;
+  }
+
+  function likePost() {
+    let id = this.parentElement.parentElement.parentElement.getAttribute('id');
+    let params = new FormData();
+    params.append('id', id);
+    fetch('/petgram/likes', {method: 'POST', body: params})
+      .then(statusCheck)
+      .then(resp => resp.text())
+      .then(function(resp) {
+        updateLikes(resp, id);
+      })
+      .catch(handleError);
+  }
+
+  function updateLikes(resp, id) {
+    let allPosts = document.querySelectorAll('article.post');
+    let postToUpdate;
+    for (let i = 0; i < allPosts.length; i++) {
+      if (allPosts[i].getAttribute('id') === id) {
+        postToUpdate = allPosts[i];
+        i = allPosts.length;
+      }
+    }
+    let postMetaData = postToUpdate.lastElementChild;
+    let likes = postMetaData.lastElementChild;
+    let update = likes.lastElementChild;
+    update.textContent = resp;
   }
 
   /**
