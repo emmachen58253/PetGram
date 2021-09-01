@@ -14,8 +14,21 @@
     </header>
     <main>
       <!--All petgram posts go here-->
-      <!--All profile were public domain and can be found on https://unsplash.com/-->
+      <!--All pictures used are publically available and can be found on https://unsplash.com/-->
       <section id='posts'>
+      </section>
+      <section id='search' class='hidden'>
+        <nav>
+          <input id='search-input' type='text'>
+          <select id='search-type'>
+            <option>Profile</option>
+            <option selected="selected">Post</option>
+            <option>Animal</option>
+          </select>
+          <button id='find' disabled>Search</button>
+          <section id='search-results'>
+          </section>
+        </nav>
       </section>
     </main>
     <footer>

@@ -6,11 +6,58 @@
 
   function init() {
     requestPosts();
-    document.getElementById('home-btn').addEventListener('click', home);
+    document.getElementById('home-btn').addEventListener('click', homeView);
+    document.getElementById('search-btn').addEventListener('click', searchView);
+    document.getElementById('search-input').addEventListener('input', barBehavior);
   }
 
-  function home() {
-    // will add seperate views in the future
+  /**
+   * Changes the view to the home view
+   */
+  function homeView() {
+    document.getElementById('posts').classList.remove('hidden');
+    document.getElementById('search').classList.add('hidden');
+  }
+
+  /**
+   * Changes the view to the search view
+   */
+  function searchView() {
+    document.getElementById('posts').classList.add('hidden');
+    document.getElementById('search').classList.remove('hidden');
+  }
+
+  /**
+   * When the user types into the search bar, if the user types something substantial
+   * (something that is not just whitespace), then enables the search button for the
+   * user to search something
+   */
+   function barBehavior() {
+    let input = document.getElementById('search-input').value.trim();
+    if (input !== '') {
+      document.getElementById('find').disabled = false;
+      document.getElementById('find').addEventListener('click', search);
+    } else {
+      document.getElementById('find').disabled = true;
+      document.getElementById('find').removeEventListener('click', search);
+    }
+  }
+
+  /**
+   * Sends request to database for queries that match the search query
+   */
+  function search() {
+    let query = document.getElementById('search-input').value.trim();
+    let category = document.getElementById('search-type').value;
+    fetch('/petgram/posts?search=' + query + '&type=' + category)
+      .then(statusCheck)
+      .then(resp => resp.json())
+      .then(searchResults)
+      .catch(handleError);
+  }
+
+  function searchResults() {
+
   }
 
   /**
@@ -102,7 +149,7 @@
     heartIcon.addEventListener('click', likePost);
     metaData.appendChild(heartIcon);
     let numLikes = document.createElement('p');
-    numLikes.textContent = currentPostData.likes;
+    numLikes.textContent = currentPostData.likes + ' likes';
     metaData.appendChild(numLikes);
     footer.appendChild(metaData);
     post.appendChild(footer);
@@ -134,7 +181,7 @@
     let postMetaData = postToUpdate.lastElementChild;
     let likes = postMetaData.lastElementChild;
     let update = likes.lastElementChild;
-    update.textContent = resp;
+    update.textContent = resp + ' likes';
   }
 
   /**

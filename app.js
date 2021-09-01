@@ -17,10 +17,11 @@ app.use(express.urlencoded({extended: true}));
  */
  app.get('/petgram/posts', async function(req, res) {
    try {
-    let search = req.query.search;
+    let input = req.query.search;
+    let category = req.query.type;
     let query = '';
-    if (search !== null && search !== undefined) {
-      query = 'SELECT id FROM posts WHERE yip LIKE \'%' + search + '%\' ORDER BY id';
+    if (input !== null && input !== undefined && category !== null && category !== undefined) {
+      query = 'SELECT id FROM posts WHERE yip LIKE \'%' + input + '%\' ORDER BY id';
     } else {
       query = 'SELECT * FROM posts ORDER BY DATETIME(date) DESC';
     }
@@ -55,7 +56,7 @@ app.use(express.urlencoded({extended: true}));
       let query = 'SELECT likes FROM posts WHERE id = ' + id;
       let getLikes = await db.all(query);
       let numLikes = getLikes[0].likes + 1;
-      let update = 'UPDATE yips SET likes = ' + numLikes + ' WHERE id = ' + id;
+      let update = 'UPDATE posts SET likes = ' + numLikes + ' WHERE id = ' + id;
       await db.run(update);
       await db.close();
       res.type('text');
