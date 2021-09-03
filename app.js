@@ -21,7 +21,11 @@ app.use(express.urlencoded({extended: true}));
     let category = req.query.type;
     let query = '';
     if (input !== null && input !== undefined && category !== null && category !== undefined) {
-      query = 'SELECT id FROM posts WHERE yip LIKE \'%' + input + '%\' ORDER BY id';
+      if (category === 'Post') {
+        query = 'SELECT * FROM posts WHERE caption LIKE \'%' + input + '%\' ORDER BY DATETIME(date) DESC';
+      } else {
+        query = 'SELECT * FROM posts WHERE animal LIKE \'%' + input + '%\' ORDER BY DATETIME(date) DESC';
+      }
     } else {
       query = 'SELECT * FROM posts ORDER BY DATETIME(date) DESC';
     }

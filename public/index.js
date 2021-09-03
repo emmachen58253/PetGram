@@ -17,6 +17,7 @@
   function homeView() {
     document.getElementById('posts').classList.remove('hidden');
     document.getElementById('search').classList.add('hidden');
+    document.getElementById('search-results').innerHTML = '';
   }
 
   /**
@@ -25,6 +26,8 @@
   function searchView() {
     document.getElementById('posts').classList.add('hidden');
     document.getElementById('search').classList.remove('hidden');
+    document.getElementById('search-results').innerHTML = '';
+    document.getElementById('search-input').value = '';
   }
 
   /**
@@ -33,6 +36,7 @@
    * user to search something
    */
    function barBehavior() {
+    document.getElementById('search-results').innerHTML = '';
     let input = document.getElementById('search-input').value.trim();
     if (input !== '') {
       document.getElementById('find').disabled = false;
@@ -56,8 +60,14 @@
       .catch(handleError);
   }
 
-  function searchResults() {
-
+  function searchResults(resp) {
+    document.getElementById('search-results').innerHTML = '';
+    if (resp.posts.length === 0) {
+      let noResults = document.createElement('No Results Found');
+      document.getElementById('search-results').appendChild(noResults);
+    } else {
+      loadPosts(resp, 'search-results');
+    }
   }
 
   /**
@@ -67,7 +77,9 @@
     fetch('/petgram/posts')
       .then(statusCheck)
       .then(resp => resp.json())
-      .then(loadPosts)
+      .then(function(resp) {
+        loadPosts(resp, 'posts')
+      })
       .catch(handleError);
   }
 
@@ -77,7 +89,7 @@
    * @param {JSON} resp the JSON object returned by the server containing information
    * about all posts that have been made on PetGram
    */
-  function loadPosts(resp) {
+  function loadPosts(resp, location) {
     let allPosts = resp.posts;
     for (let i = 0; i < allPosts.length; i++) {
       let currentPostData = allPosts[i];
@@ -87,7 +99,7 @@
       post = addPostProfile(post, currentPostData);
       post = addPostImage(post, currentPostData);
       post = addPostMetaData(post, currentPostData);
-      document.getElementById('posts').appendChild(post);
+      document.getElementById(location).appendChild(post);
     }
   }
 
