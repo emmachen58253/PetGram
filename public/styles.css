@@ -144,3 +144,21 @@ select {
   margin: auto;
   font-size: 17pt;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 200px;
+  padding-left: 300px;
+  padding-right: 300px;
+}
+
+form > label {
+  margin: 10px;
+}
+
+form > input {
+  margin: 10px;
+}
+
+

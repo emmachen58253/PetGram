@@ -8,6 +8,7 @@
     requestPosts();
     document.getElementById('home-btn').addEventListener('click', homeView);
     document.getElementById('search-btn').addEventListener('click', searchView);
+    document.getElementById('new-btn').addEventListener('click', newView);
     document.getElementById('search-input').addEventListener('input', barBehavior);
   }
 
@@ -17,6 +18,7 @@
   function homeView() {
     document.getElementById('posts').classList.remove('hidden');
     document.getElementById('search').classList.add('hidden');
+    document.getElementById('new').classList.add('hidden');
     document.getElementById('search-results').innerHTML = '';
   }
 
@@ -26,8 +28,15 @@
   function searchView() {
     document.getElementById('posts').classList.add('hidden');
     document.getElementById('search').classList.remove('hidden');
+    document.getElementById('new').classList.add('hidden');
     document.getElementById('search-results').innerHTML = '';
     document.getElementById('search-input').value = '';
+  }
+
+  function newView() {
+    document.getElementById('posts').classList.add('hidden');
+    document.getElementById('search').classList.add('hidden');
+    document.getElementById('new').classList.remove('hidden');
   }
 
   /**
